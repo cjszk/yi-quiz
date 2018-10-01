@@ -61,6 +61,7 @@ export class EditQuestionForm extends React.Component {
 
     generateInputs() {
         let inputs = [];
+        console.log(this.state.answerCount)
         for (let i=1; i<=this.state.answerCount; i++) {
             let checked = ""
             if (this.state.selectedAnswer === i) {
@@ -93,6 +94,7 @@ export class EditQuestionForm extends React.Component {
             this.setState({
                 question: question.text,
                 answers: question.answers,
+                answerCount: question.answers.length
             })
         }
     }
@@ -103,6 +105,7 @@ export class EditQuestionForm extends React.Component {
             this.setState({
                 question: question.text,
                 answers: question.answers,
+                answerCount: question.answers.length
             })
         }
     }
