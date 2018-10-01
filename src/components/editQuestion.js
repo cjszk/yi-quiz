@@ -13,10 +13,10 @@ export class EditQuestionForm extends React.Component {
         this.state = {
             question: '',
             answers: [
-                {text: ''},
-                {text: ''},
-                {text: ''},
-                {text: ''},
+                {text: '', correct: true},
+                {text: '', correct: false},
+                {text: '', correct: false},
+                {text: '', correct: false},
             ],
             answerCount: 4,
             selectedAnswer: 1,
@@ -26,12 +26,7 @@ export class EditQuestionForm extends React.Component {
     onSubmit() {
         if (Number(this.state.answerCount) !== this.state.answers.filter((answer) => answer.text.length > 0).length || this.state.question.length === 0)
             return alert('Please ensure that all inputs have values');
-        let answers = this.state.answers.slice().map((answer, index) => {
-            if (index+1 === this.state.selectedAnswer)
-                return {text: answer.text, correct: true}
-            else 
-                return {text: answer.text, correct: false}
-        });
+        let answers = this.state.answers.slice();
         let questions = this.props.questionsReducer.questions.slice();
         questions[this.props.questionsReducer.selection] = {
             text: this.state.question,
@@ -49,7 +44,7 @@ export class EditQuestionForm extends React.Component {
         } else {
             let answers = this.state.answers.slice();
             for (let i=this.state.answerCount; i<value; i++) {
-                answers.push({text: ''});
+                answers.push({text: '', correct: false});
             }
             this.setState({
                 answerCount: value,
@@ -63,21 +58,29 @@ export class EditQuestionForm extends React.Component {
         let inputs = [];
         console.log(this.state.answerCount)
         for (let i=1; i<=this.state.answerCount; i++) {
-            let checked = ""
+            let checked = "";
+            let correct = false;
             if (this.state.selectedAnswer === i) {
                 checked = "checked"
+                correct = true;
             }
             inputs.push(
                 <div key={i}>
                     <input checked={checked} type="radio"
-                    onChange={() => {this.setState({selectedAnswer: i})}}
+                    onChange={() => {
+                        let answers = this.state.answers.slice();
+                        answers[this.state.selectedAnswer-1] = {text: answers[this.state.selectedAnswer-1].text, correct: false}
+                        answers[i-1] = {text: answers[i-1].text, correct: true};
+                        console.log(answers)
+                        this.setState({answers: answers, selectedAnswer: i})
+                    }}
                     />
                     <input
                     type={"answer-" + String(i)}
                     name={"answer-" + String(i)}
                     onChange = {(event) => {
                         let answers = this.state.answers.slice();
-                        answers[i-1] = {text: event.target.value};
+                        answers[i-1] = {text: event.target.value, correct: correct};
                         this.setState({answers})
                     }}
                     value={this.state.answers[i-1].text}

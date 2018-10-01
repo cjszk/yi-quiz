@@ -6,37 +6,37 @@ const initialState = {
         {
             text: 'test',
             answers: [
-                {text: 'test'},
-                {text: 'test'},
-                {text: 'test'},
-                {text: 'test'}
+                {text: 'test', correct: true},
+                {text: 'test', correct: false},
+                {text: 'test', correct: false},
+                {text: 'test', correct: false},
             ]
         },
         {
             text: 'test2',
             answers: [
-                {text: 'test'},
-                {text: 'test'},
-                {text: 'test'},
-                {text: 'test'}
+                {text: 'test', correct: false},
+                {text: 'test', correct: true},
+                {text: 'test', correct: false},
+                {text: 'test', correct: false},
             ]
         },
         {
             text: 'test3',
             answers: [
-                {text: 'test'},
-                {text: 'test'},
-                {text: 'test'},
-                {text: 'test'}
+                {text: 'test', correct: false},
+                {text: 'test', correct: false},
+                {text: 'test', correct: true},
+                {text: 'test', correct: false},
             ]
         },
         {
             text: 'test4',
             answers: [
-                {text: 'test'},
-                {text: 'test'},
-                {text: 'test'},
-                {text: 'test'}
+                {text: 'test', correct: false},
+                {text: 'test', correct: false},
+                {text: 'test', correct: false},
+                {text: 'test', correct: true},
             ]
         }
     ],
