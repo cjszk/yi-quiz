@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 import { updateQuestions } from '../actions/questions';
 
+import JSONView from './JSONView';
+
 export class AddQuestionForm extends React.Component {
     constructor(props) {
         super(props);
@@ -93,14 +95,6 @@ export class AddQuestionForm extends React.Component {
         return inputs;
     }
 
-    componentDidMount() {
-        // if (this.props.questionsReducer.selection.length > 0) {
-        //     this.setState({
-
-        //     })   
-        // }
-    }
-
     render() {
         return (
             <form
@@ -136,6 +130,7 @@ export class AddQuestionForm extends React.Component {
                     type="submit">
                     Submit
                 </button>
+                <JSONView parentState={this.state}/>
             </form>
         );
     }

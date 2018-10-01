@@ -4,6 +4,8 @@ import { Field, reduxForm, focus } from 'redux-form';
 import { Redirect } from 'react-router-dom';
 import { updateQuestions } from '../actions/questions';
 
+import JSONView from './JSONView';
+
 export class EditQuestionForm extends React.Component {
     constructor(props) {
         super(props);
@@ -95,6 +97,16 @@ export class EditQuestionForm extends React.Component {
         }
     }
 
+    componentDidUpdate() {
+        let question = this.props.questionsReducer.questions[this.props.questionsReducer.selection];
+        if (this.state.question !== question.text || this.state.answers !== question.answers) {
+            this.setState({
+                question: question.text,
+                answers: question.answers,
+            })
+        }
+    }
+
     render() {
         if (this.props.questionsReducer.selection === null)
             return <Redirect to="/"/>
@@ -132,6 +144,7 @@ export class EditQuestionForm extends React.Component {
                     type="submit">
                     Submit
                 </button>
+                <JSONView parentState={this.state}/>
             </form>
         );
     }

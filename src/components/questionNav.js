@@ -35,7 +35,6 @@ class QuestionNav extends Component {
     }
 
     render() {
-        console.log(this.props.questionsReducer.selection)
         return (
           <div className="quiz-maker-nav">
             <Link to="/" className="add-item-button">Add Item</Link>
