@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.quiz-maker {
+
+}
+
+.quiz-maker-add-form {
+  
+}
+
+.quiz-maker-add-form * {
+  margin: 10px;
+}
