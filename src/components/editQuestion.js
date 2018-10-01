@@ -56,7 +56,6 @@ export class EditQuestionForm extends React.Component {
 
     generateInputs() {
         let inputs = [];
-        console.log(this.state.answerCount)
         for (let i=1; i<=this.state.answerCount; i++) {
             let checked = "";
             let correct = false;
@@ -94,10 +93,19 @@ export class EditQuestionForm extends React.Component {
     componentDidMount() {
         if (this.props.questionsReducer.selection !== null) {
             let question = this.props.questionsReducer.questions[this.props.questionsReducer.selection];
+            let selectedAnswer = 1;
+            for (let i=0; i<question.answers.length; i++) {
+                if (question.answers[i].correct === true) {
+                    selectedAnswer = i+1;
+                    break;
+                }                
+            }
+            console.log(selectedAnswer)
             this.setState({
                 question: question.text,
                 answers: question.answers,
-                answerCount: question.answers.length
+                answerCount: question.answers.length,
+                selectedAnswer
             })
         }
     }
@@ -105,10 +113,19 @@ export class EditQuestionForm extends React.Component {
     componentWillReceiveProps(newProps) {
         if (this.props.questionsReducer.selection !== newProps.questionsReducer.selection) {
             let question = newProps.questionsReducer.questions[newProps.questionsReducer.selection];
+            let selectedAnswer = 1;
+            for (let i=0; i<question.answers.length; i++) {
+                if (question.answers[i].correct === true) {
+                    selectedAnswer = i+1;
+                    break;
+                }                
+            }
+            console.log(selectedAnswer)
             this.setState({
                 question: question.text,
                 answers: question.answers,
-                answerCount: question.answers.length
+                answerCount: question.answers.length,
+                selectedAnswer
             })
         }
     }
