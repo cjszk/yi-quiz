@@ -24,7 +24,7 @@ export class EditQuestionForm extends React.Component {
     }
 
     onSubmit() {
-        if (this.state.answerCount !== this.state.answers.filter((answer) => answer.text.length > 0).length || this.state.question.length === 0)
+        if (Number(this.state.answerCount) !== this.state.answers.filter((answer) => answer.text.length > 0).length || this.state.question.length === 0)
             return alert('Please ensure that all inputs have values');
         let answers = this.state.answers.slice().map((answer, index) => {
             if (index+1 === this.state.selectedAnswer)
@@ -97,9 +97,9 @@ export class EditQuestionForm extends React.Component {
         }
     }
 
-    componentDidUpdate() {
-        let question = this.props.questionsReducer.questions[this.props.questionsReducer.selection];
-        if (this.state.question !== question.text || this.state.answers !== question.answers) {
+    componentWillReceiveProps(newProps) {
+        if (this.props.questionsReducer.selection !== newProps.questionsReducer.selection) {
+            let question = newProps.questionsReducer.questions[newProps.questionsReducer.selection];
             this.setState({
                 question: question.text,
                 answers: question.answers,

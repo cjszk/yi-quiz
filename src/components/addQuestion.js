@@ -23,7 +23,7 @@ export class AddQuestionForm extends React.Component {
     }
 
     onSubmit() {
-        if (this.state.answerCount !== this.state.answers.filter((answer) => answer.text.length > 0).length || this.state.question.length === 0)
+        if (Number(this.state.answerCount) !== this.state.answers.filter((answer) => answer.text.length > 0).length || this.state.question.length === 0)
             return alert('Please ensure that all inputs have values');
         let answers = this.state.answers.slice().map((answer, index) => {
             if (index+1 === this.state.selectedAnswer)
@@ -96,6 +96,7 @@ export class AddQuestionForm extends React.Component {
     }
 
     render() {
+        console.log(this.state);
         return (
             <form
                 id="quiz-maker-add-form"
