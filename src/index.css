@@ -4,16 +4,25 @@ body {
   font-family: sans-serif;
 }
 
-.quiz-maker {
-
+.add-item-button {
+  display: block;
+  width: 35%;
+  text-decoration: none;
+  font-size: 24px;
+  margin: 30px auto;
+  color: black;
+  padding: 5px;
+  border: 1px solid #777;
+  background-color: #ccc;
+  text-align: center;
 }
 
-.quiz-maker-add-form {
+.quiz-maker-add-form, .quiz-maker-edit-form {
   display: inline-block;
   vertical-align: top;
 }
 
-.quiz-maker-add-form * {
+.quiz-maker-add-form *, .quiz-maker-edit-form * {
   margin: 10px;
 }
 
@@ -22,6 +31,18 @@ body {
   width: 20%;
   height: 99vh;
   border-right: 1px solid black;
+}
+
+.quiz-maker-nav-item {
+  padding: 10px;
+  list-style: none;
+  border-bottom: 1px solid black;
+  display: block;
+}
+
+.quiz-maker-nav-item:hover {
+  background-color: skyblue;
+  cursor: pointer;
 }
 
 .form-error {
