@@ -37,12 +37,10 @@ body {
   padding: 10px;
   list-style: none;
   border-bottom: 1px solid black;
-  display: block;
-}
-
-.quiz-maker-nav-item:hover {
-  background-color: skyblue;
-  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .form-error {

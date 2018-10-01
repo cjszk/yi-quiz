@@ -1,7 +1,45 @@
 import {UPDATE_QUESTIONS, SELECT_EDIT} from '../actions/questions';
 
 const initialState = {
-    questions: [],
+    // questions: [],
+    questions: [
+        {
+            text: 'test',
+            answers: [
+                {text: 'test'},
+                {text: 'test'},
+                {text: 'test'},
+                {text: 'test'}
+            ]
+        },
+        {
+            text: 'test2',
+            answers: [
+                {text: 'test'},
+                {text: 'test'},
+                {text: 'test'},
+                {text: 'test'}
+            ]
+        },
+        {
+            text: 'test3',
+            answers: [
+                {text: 'test'},
+                {text: 'test'},
+                {text: 'test'},
+                {text: 'test'}
+            ]
+        },
+        {
+            text: 'test4',
+            answers: [
+                {text: 'test'},
+                {text: 'test'},
+                {text: 'test'},
+                {text: 'test'}
+            ]
+        }
+    ],
     selection: null
 }
 
