@@ -99,7 +99,6 @@ export class AddQuestionForm extends React.Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <form
                 id="quiz-maker-add-form"

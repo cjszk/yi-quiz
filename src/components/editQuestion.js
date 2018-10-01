@@ -70,7 +70,6 @@ export class EditQuestionForm extends React.Component {
                         let answers = this.state.answers.slice();
                         answers[this.state.selectedAnswer-1] = {text: answers[this.state.selectedAnswer-1].text, correct: false}
                         answers[i-1] = {text: answers[i-1].text, correct: true};
-                        console.log(answers)
                         this.setState({answers: answers, selectedAnswer: i})
                     }}
                     />
@@ -90,43 +89,32 @@ export class EditQuestionForm extends React.Component {
         return inputs;
     }
 
+    mountData(props) {
+        let question = props.questionsReducer.questions[props.questionsReducer.selection];
+        let selectedAnswer = 1;
+        for (let i=0; i<question.answers.length; i++) {
+            if (question.answers[i].correct === true) {
+                selectedAnswer = i+1;
+                break;
+            }                
+        }
+        this.setState({
+            question: question.text,
+            answers: question.answers,
+            answerCount: question.answers.length,
+            selectedAnswer
+        })
+    }
+
     componentDidMount() {
         if (this.props.questionsReducer.selection !== null) {
-            let question = this.props.questionsReducer.questions[this.props.questionsReducer.selection];
-            let selectedAnswer = 1;
-            for (let i=0; i<question.answers.length; i++) {
-                if (question.answers[i].correct === true) {
-                    selectedAnswer = i+1;
-                    break;
-                }                
-            }
-            console.log(selectedAnswer)
-            this.setState({
-                question: question.text,
-                answers: question.answers,
-                answerCount: question.answers.length,
-                selectedAnswer
-            })
+            this.mountData(this.props);
         }
     }
 
     componentWillReceiveProps(newProps) {
         if (this.props.questionsReducer.selection !== newProps.questionsReducer.selection) {
-            let question = newProps.questionsReducer.questions[newProps.questionsReducer.selection];
-            let selectedAnswer = 1;
-            for (let i=0; i<question.answers.length; i++) {
-                if (question.answers[i].correct === true) {
-                    selectedAnswer = i+1;
-                    break;
-                }                
-            }
-            console.log(selectedAnswer)
-            this.setState({
-                question: question.text,
-                answers: question.answers,
-                answerCount: question.answers.length,
-                selectedAnswer
-            })
+            this.mountData(newProps);
         }
     }
 
