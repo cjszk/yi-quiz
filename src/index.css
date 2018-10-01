@@ -9,9 +9,22 @@ body {
 }
 
 .quiz-maker-add-form {
-  
+  display: inline-block;
+  vertical-align: top;
 }
 
 .quiz-maker-add-form * {
   margin: 10px;
+}
+
+.quiz-maker-nav {
+  display: inline-block;
+  width: 20%;
+  height: 99vh;
+  border-right: 1px solid black;
+}
+
+.form-error {
+  display: none;
+  position: absolute;  
 }

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
 import Input from './input';
 import { required, nonEmpty, matches, length, isTrimmed } from '../validators';
+import { updateQuestions } from '../actions/questions';
 
 export class AddQuestionForm extends React.Component {
     constructor(props) {
@@ -17,20 +18,26 @@ export class AddQuestionForm extends React.Component {
     }
 
     onSubmit() {
+        if (this.state.answers.length !== this.state.answers.filter((answer) => answer).length)
+            return alert('Please ensure that all inputs have values');
         let i = 0;
         let answers = this.state.answers.slice().map((answer) => {
             i++;
-            if (i === this.state.selectedAnswer) {
+            if (i === this.state.selectedAnswer)
                 return {text: answer.text, correct: true}
-            } else {
+            else 
                 return {text: answer.text, correct: false}
-            }
         });
-        const json = JSON.stringify({
+        let questions = this.props.questionsReducer.questions.slice();
+        questions.push({
             text: this.state.question,
             answers
         })
-        console.log(json)
+        this.props.dispatch(updateQuestions(questions))
+        this.setState({
+            question: '',
+            answers: []
+        })
     }
     
     handleAnswerCount(value) {
@@ -56,7 +63,7 @@ export class AddQuestionForm extends React.Component {
                     component={Input}
                     type={"answer-" + String(i)}
                     name={"answer-" + String(i)}
-                    value = {this.state.question}
+                    value = {this.state.answers[i-1]}
                     onChange = {(event) => {
                         let answers = this.state.answers.slice();
                         answers[i-1] = {text: event.target.value};
@@ -71,7 +78,7 @@ export class AddQuestionForm extends React.Component {
         return inputs;
     }
     render() {
-        console.log(this.state)
+        console.log(this.state, this.props.questionsReducer)
         return (
             <form
                 className="quiz-maker-add-form"
@@ -114,8 +121,7 @@ export class AddQuestionForm extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        authToken: state.auth.authToken,
-        currentUser: state.auth.currentUser
+        questionsReducer: state.questionsReducer
     }
 };
 
