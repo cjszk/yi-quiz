@@ -68,7 +68,9 @@ export class EditQuestionForm extends React.Component {
                     <input checked={checked} type="radio"
                     onChange={() => {
                         let answers = this.state.answers.slice();
-                        answers[this.state.selectedAnswer-1] = {text: answers[this.state.selectedAnswer-1].text, correct: false}
+                        if (answers.length >= this.state.selectedAnswer) {
+                            answers[this.state.selectedAnswer-1] = {text: answers[this.state.selectedAnswer-1].text, correct: false}
+                        }
                         answers[i-1] = {text: answers[i-1].text, correct: true};
                         this.setState({answers: answers, selectedAnswer: i})
                     }}
