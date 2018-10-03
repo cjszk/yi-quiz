@@ -1,0 +1,8 @@
+T/F Should be checkboxes
+Number inputs should have an integer from 1 to 100 (passing percentage)
+Random question subset count (between 0 and # of questions)
+    (optional field to show how many questions to display)
+Last description is a text input
+
+Add Q button and Add A button instead of a side nav for singular questions
+Remove buttons for entire questions or answers

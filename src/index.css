@@ -4,7 +4,7 @@ body {
   font-family: sans-serif;
 }
 
-.add-item-button {
+/* .add-item-button {
   display: block;
   width: 35%;
   text-decoration: none;
@@ -15,9 +15,9 @@ body {
   border: 1px solid #777;
   background-color: #ccc;
   text-align: center;
-}
+} */
 
-.quiz-maker-add-form, .quiz-maker-edit-form {
+/* .quiz-maker-add-form, .quiz-maker-edit-form {
   display: inline-block;
   vertical-align: top;
 }
@@ -42,7 +42,7 @@ body {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-}
+} */
 
 .form-error {
   display: none;

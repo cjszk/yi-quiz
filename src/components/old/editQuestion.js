@@ -14,9 +14,9 @@ export class EditQuestionForm extends React.Component {
             question: '',
             answers: [
                 {text: '', correct: true},
-                {text: '', correct: false},
-                {text: '', correct: false},
-                {text: '', correct: false},
+                {text: ''},
+                {text: ''},
+                {text: ''},
             ],
             answerCount: 4,
             selectedAnswer: 1,
@@ -44,7 +44,7 @@ export class EditQuestionForm extends React.Component {
         } else {
             let answers = this.state.answers.slice();
             for (let i=this.state.answerCount; i<value; i++) {
-                answers.push({text: '', correct: false});
+                answers.push({text: ''});
             }
             this.setState({
                 answerCount: value,
@@ -69,7 +69,7 @@ export class EditQuestionForm extends React.Component {
                     onChange={() => {
                         let answers = this.state.answers.slice();
                         if (answers.length >= this.state.selectedAnswer) {
-                            answers[this.state.selectedAnswer-1] = {text: answers[this.state.selectedAnswer-1].text, correct: false}
+                            answers[this.state.selectedAnswer-1] = {text: answers[this.state.selectedAnswer-1].text}
                         }
                         answers[i-1] = {text: answers[i-1].text, correct: true};
                         this.setState({answers: answers, selectedAnswer: i})
@@ -157,7 +157,6 @@ export class EditQuestionForm extends React.Component {
                     type="submit">
                     Submit
                 </button>
-                <JSONView parentState={this.state}/>
             </form>
         );
     }

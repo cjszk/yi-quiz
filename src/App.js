@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 
-import QuestionNav from './components/questionNav';
-import AddQuestionForm from './components/addQuestion';
-import EditQuestionForm from './components/editQuestion';
+import QuestionNav from './components/old/questionNav';
+import AddQuestionForm from './components/old/addQuestion';
+import EditQuestionForm from './components/old/editQuestion';
 import EntireJSONView from './components/entireJSONView';
 
-class QuizMaker extends Component {
+class App extends Component {
 
     render() {
         return (
           <div className="quiz-maker">
-            <QuestionNav/>
+            {/* <QuestionNav/>
             <Route exact path="/" component={AddQuestionForm} />
-            <Route exact path="/edit" component={EditQuestionForm} />
+            <Route exact path="/edit" component={EditQuestionForm} /> */}
             <EntireJSONView/>
           </div>
         );
     }
 }
 
-export default withRouter(QuizMaker);
+export default withRouter(App);

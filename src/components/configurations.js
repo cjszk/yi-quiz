@@ -1,25 +1,38 @@
 import React, { Component } from 'react';
 
-class JSONView extends Component {
+class Configurations extends Component {
+    constructor(props) {
+        super(props);
 
-    buildJSONView() {
-        return JSON.stringify({
-            questions: [
-                {
-                    text: this.props.parentState.question,
-                    answers: this.props.parentState.answers
-                }
-            ]
-        }, undefined, 2)
+        this.state = {
+            
+        }
     }
+
+/*
+"config": {
+    "previousModulesRequired": true,
+    "passingPercentage": 70,
+    "randomizeQuestionOrder": false,
+    "randomizeAnswerOrder": true,
+    "randomQuestionSubsetCount": 2,
+    "startingDescription": "This quiz test your ability to identify colors in nature."
+  }
+*/
 
     render() {
         return (
-          <div className="json-view">
-            <pre>{this.buildJSONView()}</pre>
+          <div className="configurations">
+            
           </div>
         );
     }
 }
 
-export default JSONView;
+const mapStateToProps = state => {
+    return {
+        questionsReducer: state.questionsReducer
+    }
+};
+
+export default connect(mapStateToProps)(Configurations);

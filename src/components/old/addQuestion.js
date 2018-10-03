@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import { Field, reduxForm, focus } from 'redux-form';
-import { updateQuestions } from '../actions/questions';
+import { updateQuestions } from '../../actions/questions';
 
 import JSONView from './JSONView';
 
@@ -13,9 +13,9 @@ export class AddQuestionForm extends React.Component {
             question: '',
             answers: [
                 {text: '', correct: true},
-                {text: '', correct: false},
-                {text: '', correct: false},
-                {text: '', correct: false},
+                {text: ''},
+                {text: ''},
+                {text: ''},
             ],
             answerCount: 4,
             selectedAnswer: 1,
@@ -36,9 +36,9 @@ export class AddQuestionForm extends React.Component {
             question: '',
             answers: [
                 {text: '', correct: true},
-                {text: '', correct: false},
-                {text: '', correct: false},
-                {text: '', correct: false},
+                {text: ''},
+                {text: ''},
+                {text: ''},
             ]
         })
     }
@@ -52,7 +52,7 @@ export class AddQuestionForm extends React.Component {
         } else {
             let answers = this.state.answers.slice();
             for (let i=this.state.answerCount; i<value; i++) {
-                answers.push({text: '', correct: false});
+                answers.push({text: ''});
             }
             this.setState({
                 answerCount: value,
@@ -76,7 +76,7 @@ export class AddQuestionForm extends React.Component {
                     <input checked={checked} type="radio"
                     onChange={() => {
                         let answers = this.state.answers.slice();
-                        answers[this.state.selectedAnswer-1] = {text: answers[this.state.selectedAnswer-1].text, correct: false}
+                        answers[this.state.selectedAnswer-1] = {text: answers[this.state.selectedAnswer-1].text}
                         answers[i-1] = {text: answers[i-1].text, correct: true};
                         console.log(answers)
                         this.setState({answers: answers, selectedAnswer: i})
@@ -87,7 +87,10 @@ export class AddQuestionForm extends React.Component {
                     name={"answer-" + String(i)}
                     onChange = {(event) => {
                         let answers = this.state.answers.slice();
-                        answers[i-1] = {text: event.target.value, correct: correct};
+                        if (correct)
+                            answers[i-1] = {text: event.target.value, correct: correct};
+                        else
+                            answers[i-1] = {text:event.target.value}
                         this.setState({answers})
                     }}
                     value={this.state.answers[i-1].text}
@@ -133,7 +136,6 @@ export class AddQuestionForm extends React.Component {
                     type="submit">
                     Submit
                 </button>
-                <JSONView parentState={this.state}/>
             </form>
         );
     }
