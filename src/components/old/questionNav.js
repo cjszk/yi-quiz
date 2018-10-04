@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {selectEdit, updateQuestions} from '../actions/questions';
+import {selectEdit, updateQuestions} from '../../actions/questions';
 
 class QuestionNav extends Component {
 

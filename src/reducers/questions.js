@@ -1,10 +1,13 @@
-import {UPDATE_QUESTIONS, SELECT_EDIT} from '../actions/questions';
+import {
+  UPDATE_QUESTIONS, UPDATE_CONFIG, 
+  // SELECT_EDIT
+} from '../actions/questions';
 
 const sampleJSON = `{
     "config": {
       "previousModulesRequired": true,
       "passingPercentage": 70,
-      "randomizeQuestionOrder": false, 
+      "randomizeQuestionOrder": true, 
       "randomizeAnswerOrder": true, 
       "randomQuestionSubsetCount": 2,
       "startingDescription": "This quiz test your ability to identify colors in nature."
@@ -57,18 +60,22 @@ const initialState = {
     selection: null
 }
 
-console.log(initialState)
-
 export default function questionsReducer(state = initialState, action) {
     if (action.type === UPDATE_QUESTIONS) {
         return Object.assign({}, state, {
             questions: action.questions
         })
-    } else if (action.type === SELECT_EDIT) {
-        return Object.assign({}, state, {
-            selection: action.selection
-        })
-    }
+    } 
+    // else if (action.type === SELECT_EDIT) {
+    //     return Object.assign({}, state, {
+    //         selection: action.selection
+    //     })
+    // }
+    else if (action.type === UPDATE_CONFIG) {
+      return Object.assign({}, state, {
+          config: action.config
+      })
+  } 
 
     return state;
 }

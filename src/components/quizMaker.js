@@ -10,10 +10,10 @@ class QuizMaker extends Component {
         return (
             <div className="quiz-maker">
                 <Configurations/>
-
+                <QuestionEditor/>
             </div>
         );
     }
 }
 
-export default JSONView;
+export default QuizMaker;

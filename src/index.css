@@ -44,6 +44,27 @@ body {
   align-items: center;
 } */
 
+.quiz-maker {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.configurations {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.answer-li {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: center;
+}
+
 .form-error {
   display: none;
   position: absolute;  
