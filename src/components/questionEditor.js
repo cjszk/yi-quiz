@@ -7,6 +7,8 @@ class Configurations extends Component {
     constructor(props) {
         super(props);
 
+        this.timeOut = 0;
+
         this.state = {
             editing: '',
             questions: []
@@ -18,9 +20,14 @@ class Configurations extends Component {
         this.setState({questions: this.props.questionsReducer.questions});
     }
 
-    componentWillUpdate() {
-        if (this.state.questions.length > 0 && this.state.questions !== this.props.questionsReducer.questions)
-            this.props.dispatch(updateQuestions(this.state.questions));
+    componentDidUpdate() {
+        if (this.state.questions.length > 0 && this.state.questions !== this.props.questionsReducer.questions) {
+        if (this.timeOut) clearTimeout(this.timeOut); 
+            this.timeOut = setTimeout(() => {
+                this.props.dispatch(updateQuestions(this.state.questions))
+            }, 1000);
+        }
+
     }
 
     generateAnswers(answerIndex) {
@@ -61,7 +68,6 @@ class Configurations extends Component {
         let questions = this.state.questions.slice();
         return questions.map((question, index) => (
             <div key={index}>
-                {/* <h3>{question.text}</h3> */}
                 <input value={question.text} placeholder="Question" onChange={(event) => {
                     question.text = event.target.value;
                     this.setState({questions})
@@ -80,7 +86,6 @@ class Configurations extends Component {
     }
 
     render() {
-        console.log(this.props)
         if (this.state.loaded) {
             return (
                 <div className="configurations">
